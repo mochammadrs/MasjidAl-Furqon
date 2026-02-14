@@ -1,12 +1,8 @@
 <template>
   <NuxtLayout name="admin">
     <div class="space-y-6">
-      <!-- Header with Add Button -->
-    <div class="flex items-center justify-between">
-      <div>
-        <h2 class="text-2xl font-serif font-bold text-masjid-dark">Kelola Pengurus</h2>
-        <p class="text-sm text-masjid-text-muted mt-1">Tambah, edit, atau hapus data pengurus masjid</p>
-      </div>
+      <!-- Add Button -->
+    <div class="flex justify-end">
       <NuxtLink
         to="/admin/officials/new"
         class="px-4 py-2.5 bg-masjid-gold hover:bg-masjid-dark text-white font-semibold rounded-lg transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-lg"
