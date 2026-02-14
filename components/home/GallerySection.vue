@@ -97,46 +97,56 @@
     </div>
 
     <!-- Lightbox Modal -->
-    <div
-      v-if="lightboxItem"
-      @click="closeLightbox"
-      class="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
+    <Transition
+      enter-active-class="transition-opacity duration-200"
+      enter-from-class="opacity-0"
+      enter-to-class="opacity-100"
+      leave-active-class="transition-opacity duration-150"
+      leave-from-class="opacity-100"
+      leave-to-class="opacity-0"
     >
-      <button
+      <div
+        v-if="lightboxItem"
         @click="closeLightbox"
-        class="absolute top-6 right-6 text-white text-4xl hover:text-masjid-gold transition-colors z-10"
+        class="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-4 overflow-y-auto"
       >
-        ✕
-      </button>
+        <button
+          @click="closeLightbox"
+          class="fixed top-4 right-4 z-[10000] text-white text-3xl sm:text-4xl hover:text-masjid-gold transition-colors bg-black/50 w-12 h-12 rounded-full flex items-center justify-center"
+          aria-label="Close lightbox"
+        >
+          ✕
+        </button>
 
-      <div @click.stop class="max-w-6xl w-full">
-        <!-- Image -->
-        <div class="mb-6">
-          <img
-            :src="lightboxItem.image_url"
-            :alt="lightboxItem.title"
-            class="w-full h-auto max-h-[80vh] object-contain rounded-lg"
-            loading="eager"
-            decoding="async"
-          />
-        </div>
-
-        <!-- Info -->
-        <div class="text-center text-white">
-          <div class="mb-3">
-            <span :class="getCategoryColor(lightboxItem.category)" class="px-3 py-1 rounded-full text-xs font-medium">
-              {{ getCategoryLabel(lightboxItem.category) }}
-            </span>
+        <div @click.stop class="max-w-5xl w-full my-auto">
+          <!-- Image -->
+          <div class="mb-4 sm:mb-6">
+            <img
+              :src="lightboxItem.image_url"
+              :alt="lightboxItem.title"
+              class="w-full h-auto max-h-[70vh] sm:max-h-[80vh] object-contain rounded-lg mx-auto"
+              loading="eager"
+              decoding="async"
+            />
           </div>
-          <h3 class="text-2xl font-serif font-bold mb-2">
-            {{ lightboxItem.title }}
-          </h3>
-          <p v-if="lightboxItem.description" class="text-white/80">
-            {{ lightboxItem.description }}
-          </p>
+
+          <!-- Info -->
+          <div class="text-center text-white px-2">
+            <div class="mb-2 sm:mb-3">
+              <span :class="getCategoryColor(lightboxItem.category)" class="px-3 py-1 rounded-full text-xs font-medium">
+                {{ getCategoryLabel(lightboxItem.category) }}
+              </span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-serif font-bold mb-2">
+              {{ lightboxItem.title }}
+            </h3>
+            <p v-if="lightboxItem.description" class="text-sm sm:text-base text-white/80">
+              {{ lightboxItem.description }}
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </Transition>
   </section>
 </template>
 
@@ -194,7 +204,14 @@ const openLightbox = (item: any) => {
 
 const closeLightbox = () => {
   lightboxItem.value = null
-  document.body.style.overflow = 'auto'
+  document.body.style.overflow = ''
+}
+
+// ESC key handler
+const handleEscape = (e: KeyboardEvent) => {
+  if (e.key === 'Escape' && lightboxItem.value) {
+    closeLightbox()
+  }
 }
 
 const loadGallery = async () => {
@@ -211,10 +228,20 @@ const loadGallery = async () => {
 
 onMounted(() => {
   loadGallery()
+  window.addEventListener('keydown', handleEscape)
 })
 
 onBeforeUnmount(() => {
-  document.body.style.overflow = 'auto'
+  document.body.style.overflow = ''
+  window.removeEventListener('keydown', handleEscape)
+})
+
+// Watch route changes and close lightbox
+const route = useRoute()
+watch(() => route.path, () => {
+  if (lightboxItem.value) {
+    closeLightbox()
+  }
 })
 </script>
 

@@ -3,7 +3,7 @@
     <div class="container mx-auto px-4 lg:px-8">
       <div class="flex items-center justify-between h-20">
         <!-- Logo -->
-        <NuxtLink to="/" class="flex items-center gap-2 lg:gap-3 group flex-shrink-0">
+        <a href="/" @click="handleLogoClick" class="flex items-center gap-2 lg:gap-3 group flex-shrink-0 cursor-pointer">
           <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-white shadow-md flex items-center justify-center overflow-hidden">
             <img src="/images/logo-masjid.png" alt="Logo Masjid Al-Furqon" class="w-full h-full object-cover" />
           </div>
@@ -15,7 +15,7 @@
               Perumahan Bukit Rancapaku Indah
             </p>
           </div>
-        </NuxtLink>
+        </a>
 
         <!-- Desktop Menu -->
         <div class="hidden md:flex items-center gap-8">
@@ -102,6 +102,8 @@
 </template>
 
 <script setup lang="ts">
+const route = useRoute()
+const router = useRouter()
 const mobileMenuOpen = ref(false)
 
 const menuItems = [
@@ -113,8 +115,38 @@ const menuItems = [
   { name: 'Galeri', path: '/#galeri' }
 ]
 
+// Handle logo click - scroll to top on homepage, navigate otherwise
+const handleLogoClick = (event: Event) => {
+  if (route.path === '/') {
+    event.preventDefault()
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+  // Otherwise, let default navigation happen
+}
+
 // Smooth scroll handler untuk hash links - IMPROVED VERSION
 const handleSmoothScroll = (event: Event, path: string) => {
+  // Jika path adalah '/' (Beranda) dan sudah di homepage
+  if (path === '/' && route.path === '/') {
+    event.preventDefault()
+    event.stopPropagation()
+    
+    // Close mobile menu
+    if (mobileMenuOpen.value) {
+      mobileMenuOpen.value = false
+    }
+    
+    // Scroll to top
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+    return
+  }
+  
   // Jika hash link (/#tentang, /#kegiatan, etc)
   if (path.startsWith('/#')) {
     event.preventDefault()
