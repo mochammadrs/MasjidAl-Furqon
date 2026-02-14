@@ -12,13 +12,51 @@ node_modules
 # Logs
 logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
 # Misc
 .DS_Store
 .fleet
 .idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
-# Local env files
+# Local env files - CRITICAL: Contains sensitive credentials!
 .env
-.env.*
+.env.local
+.env.*.local
+.env.development
+.env.production
 !.env.example
+
+# OS files
+Thumbs.db
+desktop.ini
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.code-workspace
+
+# Test coverage
+coverage
+*.lcov
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
