@@ -75,8 +75,8 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    // Prerender static pages for better performance
-    '/': { prerender: true },
+    // Homepage: SSR for better SEO, but no prerender to avoid build-time API calls
+    '/': { ssr: true },
     // Admin pages: no prerender, client-side only
     '/admin/**': { ssr: false },
     // API routes
