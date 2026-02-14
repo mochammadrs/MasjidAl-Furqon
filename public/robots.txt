@@ -1,0 +1,15 @@
+# robots.txt untuk Masjid Al-Furqon
+# Mengizinkan semua crawler untuk SEO optimal
+
+User-agent: *
+Allow: /
+
+# Blokir halaman admin dari search engines
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://masjid-alfurqon.com/sitemap.xml
+
+# Crawl-delay untuk bot yang sopan
+Crawl-delay: 1
