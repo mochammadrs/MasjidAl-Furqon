@@ -1,5 +1,5 @@
 <template>
-  <section class="relative min-h-[600px] lg:min-h-[700px] flex items-center justify-center mb-28 md:mb-32">
+  <section class="relative min-h-[600px] lg:min-h-[700px] flex items-center justify-center mb-36 md:mb-32">
     <!-- Background Gradient (Placeholder - akan diganti dengan foto masjid) -->
     <div class="absolute inset-0 z-0">
       <!-- Gradient Background -->
@@ -74,19 +74,19 @@
     </div>
 
     <!-- Mobile Stats -->
-    <div class="absolute -bottom-16 left-0 right-0 z-30 md:hidden">
+    <div class="absolute -bottom-28 left-0 right-0 z-30 md:hidden">
       <div class="container mx-auto px-4">
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-2 gap-2">
           <div
             v-for="(stat, index) in stats"
             :key="index"
-            class="bg-white/95 backdrop-blur-lg rounded-lg p-4 shadow-lg border border-masjid-gold/20"
+            class="bg-white/95 backdrop-blur-lg rounded-lg p-2.5 shadow-lg border border-masjid-gold/20"
           >
-            <component :is="stat.icon" :size="24" class="text-masjid-gold mb-1" />
-            <div class="text-xl font-serif font-bold text-masjid-dark">
+            <component :is="stat.icon" :size="20" class="text-masjid-gold mb-0.5" />
+            <div class="text-lg font-serif font-bold text-masjid-dark leading-tight">
               {{ stat.value }}
             </div>
-            <div class="text-xs text-masjid-text-muted">
+            <div class="text-[10px] text-masjid-text-muted leading-tight">
               {{ stat.label }}
             </div>
           </div>

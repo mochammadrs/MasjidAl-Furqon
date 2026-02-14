@@ -1,14 +1,20 @@
 <template>
   <div class="space-y-6">
-      <!-- Add Button -->
-    <div class="flex justify-end">
-      <NuxtLink
-        to="/admin/activities/new"
-        class="px-4 py-2.5 bg-masjid-gold hover:bg-masjid-dark text-white font-semibold rounded-lg transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-lg"
-      >
-        <PhPlus :size="18" />
-        <span>Tambah Kegiatan</span>
-      </NuxtLink>
+    <!-- Page Header -->
+    <div class="flex items-center justify-between">
+      <div>
+        <h2 class="text-2xl font-serif font-bold text-masjid-dark">Kelola Kegiatan</h2>
+        <p class="text-sm text-masjid-text-muted mt-1">Tambah, edit, atau hapus kegiatan masjid</p>
+      </div>
+      <div>
+        <NuxtLink
+          to="/admin/activities/new"
+          class="px-4 py-2.5 bg-masjid-gold hover:bg-masjid-dark text-white font-semibold rounded-lg transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-lg"
+        >
+          <PhPlus :size="18" />
+          <span>Tambah Kegiatan</span>
+        </NuxtLink>
+      </div>
     </div>
 
     <!-- Loading State -->

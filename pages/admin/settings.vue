@@ -1,5 +1,11 @@
 <template>
   <div class="max-w-4xl space-y-6">
+    <!-- Page Header -->
+    <div>
+      <h2 class="text-2xl font-serif font-bold text-masjid-dark">Pengaturan Website</h2>
+      <p class="text-sm text-masjid-text-muted mt-1">Kelola informasi dan pengaturan website masjid</p>
+    </div>
+
     <!-- Loading State -->
     <div v-if="loading" class="flex justify-center py-12">
       <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-masjid-gold"></div>
@@ -241,7 +247,7 @@
       </div>
     </form>
   </div>
-
+</template>
 
 <script setup lang="ts">
 import { PhBuilding, PhCurrencyCircleDollar, PhDeviceMobile, PhTarget, PhLightbulb, PhFloppyDisk, PhArrowClockwise } from '@phosphor-icons/vue'
