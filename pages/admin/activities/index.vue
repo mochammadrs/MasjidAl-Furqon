@@ -1,6 +1,5 @@
 <template>
-  <NuxtLayout name="admin">
-    <div class="space-y-6">
+  <div class="space-y-6">
       <!-- Add Button -->
     <div class="flex justify-end">
       <NuxtLink
@@ -162,7 +161,6 @@
       </div>
     </div>
   </div>
-  </NuxtLayout>
 </template>
 
 <script setup lang="ts">

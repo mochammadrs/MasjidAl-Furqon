@@ -1,6 +1,5 @@
 <template>
-  <NuxtLayout name="admin">
-    <div class="max-w-4xl space-y-6">
+  <div class="max-w-4xl space-y-6">
     <!-- Loading State -->
     <div v-if="loading" class="flex justify-center py-12">
       <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-masjid-gold"></div>
@@ -242,8 +241,7 @@
       </div>
     </form>
   </div>
-  </NuxtLayout>
-</template>
+
 
 <script setup lang="ts">
 import { PhBuilding, PhCurrencyCircleDollar, PhDeviceMobile, PhTarget, PhLightbulb, PhFloppyDisk, PhArrowClockwise } from '@phosphor-icons/vue'

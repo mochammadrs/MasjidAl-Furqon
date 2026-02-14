@@ -1,6 +1,5 @@
 <template>
-  <NuxtLayout name="admin">
-    <div class="max-w-4xl">
+  <div class="max-w-4xl">
     <div class="mb-6">
       <NuxtLink
         to="/admin/officials"
@@ -185,7 +184,6 @@
       </form>
     </div>
   </div>
-  </NuxtLayout>
 </template>
 
 <script setup lang="ts">
