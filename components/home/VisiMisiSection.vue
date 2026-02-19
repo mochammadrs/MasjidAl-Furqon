@@ -1,6 +1,16 @@
 <template>
-  <section id="tentang" class="py-20 bg-gradient-to-b from-white to-masjid-cream">
-    <div class="container mx-auto px-6">
+  <section id="tentang" class="relative py-20 overflow-hidden">
+    <!-- Premium Background -->
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-masjid-cream/30 to-white"></div>
+    
+    <!-- Animated Ambient Glows (Subtle) -->
+    <div class="absolute top-20 -left-32 w-96 h-96 bg-masjid-gold/5 rounded-full blur-3xl animate-float-slow"></div>
+    <div class="absolute bottom-20 -right-32 w-80 h-80 bg-masjid-cream/10 rounded-full blur-3xl animate-float" style="animation-delay: 2s;"></div>
+    
+    <!-- Decorative Pattern Overlay -->
+    <div class="absolute inset-0 opacity-[0.02]" style="background-image: url('data:image/svg+xml,%3Csvg width=\'80\' height=\'80\' viewBox=\'0 0 80 80\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'1\'%3E%3Cpath d=\'M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z\' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    
+    <div class="container mx-auto px-6 relative z-10">
       <!-- Section Header -->
       <div class="text-center max-w-2xl mx-auto mb-16">
         <div class="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-masjid-gold/10 to-masjid-dark/10 border border-masjid-gold/30 rounded-full mb-6 shadow-sm">
@@ -143,3 +153,30 @@ onMounted(() => {
   loadVisiMisi()
 })
 </script>
+<style scoped>
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, -20px) scale(1.05);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-30px, 30px) scale(1.08);
+  }
+}
+
+.animate-float {
+  animation: float 20s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 25s ease-in-out infinite;
+}
+</style>

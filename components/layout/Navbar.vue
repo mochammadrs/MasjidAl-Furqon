@@ -5,11 +5,11 @@
         <!-- Logo -->
         <a href="/" @click="handleLogoClick" class="flex items-center gap-2 lg:gap-3 group flex-shrink-0 cursor-pointer">
           <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-white shadow-md flex items-center justify-center overflow-hidden">
-            <img src="/images/logo-masjid.png" alt="Logo Masjid Al-Furqon" class="w-full h-full object-cover" />
+            <img src="/images/logo-masjid.png" alt="Logo Masjid Jamie Al-Furqon" class="w-full h-full object-cover" />
           </div>
           <div>
             <h1 class="text-sm sm:text-base lg:text-lg font-serif font-bold text-masjid-dark leading-tight">
-              Masjid Al-Furqon
+              Masjid Jamie Al-Furqon
             </h1>
             <p class="text-[10px] sm:text-xs lg:text-sm text-masjid-text-muted leading-tight">
               Perumahan Bukit Rancapaku Indah

@@ -26,11 +26,11 @@
       <!-- Logo -->
       <div class="flex items-center gap-3 p-6 border-b border-masjid-gold/20 flex-shrink-0">
         <div class="w-10 h-10 bg-white rounded-lg shadow-md flex items-center justify-center overflow-hidden">
-          <img src="/images/logo-masjid.png" alt="Logo Masjid Al-Furqon" class="w-full h-full object-cover" />
+          <img src="/images/logo-masjid.png" alt="Logo Masjid Jamie Al-Furqon" class="w-full h-full object-cover" />
         </div>
         <div>
           <h2 class="font-serif font-bold text-lg">Admin Panel</h2>
-          <p class="text-xs text-gray-400">Masjid Al-Furqon</p>
+          <p class="text-xs text-gray-400">Masjid Jamie Al-Furqon</p>
         </div>
       </div>
 

@@ -9,6 +9,7 @@
       <HomeDonationRow />
       <HomeOfficialsSection />
       <HomeGallerySection />
+      <HomeMapSection />
     </main>
     <LayoutAppFooter />
     <LayoutWhatsAppButton />
@@ -35,7 +36,7 @@ const loadSettings = async () => {
 await loadSettings()
 
 // Dynamic SEO Meta Tags
-const siteName = settings.value.masjid_name || 'Masjid Al-Furqon'
+const siteName = settings.value.masjid_name || 'Masjid Jamie Al-Furqon'
 const siteAddress = settings.value.masjid_address || 'Tasikmalaya, Jawa Barat'
 
 useSeoMeta({

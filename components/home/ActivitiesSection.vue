@@ -1,6 +1,16 @@
 <template>
-  <section id="kegiatan" class="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white">
-    <div class="container mx-auto px-4 lg:px-8">
+  <section id="kegiatan" class="relative py-16 md:py-24 overflow-hidden">
+    <!-- Premium Background -->
+    <div class="absolute inset-0 bg-gradient-to-b from-gray-50 via-white to-gray-50/50"></div>
+    
+    <!-- Decorative Ambient Elements -->
+    <div class="absolute -top-40 right-1/4 w-80 h-80 bg-gradient-to-br from-masjid-gold/5 to-transparent rounded-full blur-3xl animate-pulse-slow"></div>
+    <div class="absolute -bottom-40 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-500/5 to-transparent rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 3s;"></div>
+    
+    <!-- Grid Pattern Overlay -->
+    <div class="absolute inset-0 opacity-[0.015]" style="background-image: linear-gradient(rgba(0,0,0,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.05) 1px, transparent 1px); background-size: 40px 40px;"></div>
+    
+    <div class="container mx-auto px-4 lg:px-8 relative z-10">
       <!-- Section Header -->
       <div class="max-w-3xl mx-auto text-center mb-14">
         <div class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-masjid-gold/20 rounded-full mb-5 shadow-sm">
@@ -11,7 +21,7 @@
           Kegiatan Terbaru
         </h2>
         <p class="text-lg text-masjid-text-muted leading-relaxed">
-          Ikuti berbagai kegiatan kajian, sosial, dan pendidikan di Masjid Al-Furqon
+          Ikuti berbagai kegiatan kajian, sosial, dan pendidikan di Masjid Jamie Al-Furqon
         </p>
       </div>
 
@@ -138,3 +148,19 @@ onMounted(() => {
   loadActivities()
 })
 </script>
+<style scoped>
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 18s ease-in-out infinite;
+}
+</style>

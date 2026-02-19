@@ -1,11 +1,24 @@
 <template>
   <section class="relative min-h-[600px] lg:min-h-[700px] flex items-center justify-center mb-36 md:mb-32">
-    <!-- Background Gradient (Placeholder - akan diganti dengan foto masjid) -->
-    <div class="absolute inset-0 z-0">
-      <!-- Gradient Background -->
-      <div class="absolute inset-0 bg-gradient-to-br from-masjid-dark via-[#3d2a1f] to-masjid-gold/40"></div>
-      <!-- Pattern Overlay -->
-      <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    <!-- Premium Background with Animated Elements -->
+    <div class="absolute inset-0 z-0 overflow-hidden">
+      <!-- Base Gradient Mesh -->
+      <div class="absolute inset-0 bg-gradient-to-br from-masjid-dark via-[#2d1f16] to-[#4a3326]"></div>
+      
+      <!-- Animated Ambient Glows -->
+      <div class="absolute top-1/4 -left-32 w-96 h-96 bg-masjid-gold/30 rounded-full blur-3xl animate-pulse-slow opacity-40"></div>
+      <div class="absolute top-1/3 -right-32 w-80 h-80 bg-masjid-cream/20 rounded-full blur-3xl animate-float opacity-30" style="animation-delay: 1s;"></div>
+      <div class="absolute bottom-1/4 left-1/4 w-72 h-72 bg-amber-600/20 rounded-full blur-3xl animate-float-slow opacity-25" style="animation-delay: 2s;"></div>
+      <div class="absolute top-1/2 right-1/3 w-64 h-64 bg-yellow-700/15 rounded-full blur-3xl animate-pulse-slow opacity-20" style="animation-delay: 3s;"></div>
+      
+      <!-- Premium Islamic Pattern Overlay -->
+      <div class="absolute inset-0 opacity-[0.07]" style="background-image: url('data:image/svg+xml,%3Csvg width=\'80\' height=\'80\' viewBox=\'0 0 80 80\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z\' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+      
+      <!-- Gradient Overlay for Depth -->
+      <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20"></div>
+      
+      <!-- Glassmorphism Grid Lines (Subtle) -->
+      <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 50px 50px;"></div>
     </div>
 
     <!-- Content -->
@@ -15,14 +28,14 @@
         <div class="inline-block mb-6">
           <span class="inline-flex items-center gap-2 px-4 py-2 bg-masjid-gold/20 backdrop-blur-sm text-masjid-gold-light text-sm font-medium rounded-full border border-masjid-gold/30">
             <PhBuilding :size="16" />
-            <span>Masjid Al-Furqon Tasikmalaya</span>
+            <span>Masjid Jamie Al-Furqon Tasikmalaya</span>
           </span>
         </div>
 
         <!-- Heading -->
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white mb-6 leading-tight">
           Selamat Datang di<br />
-          <span class="text-masjid-gold">Masjid Al-Furqon</span>
+          <span class="text-masjid-gold">Masjid Jamie Al-Furqon</span>
         </h1>
 
         <!-- Subtitle -->
@@ -122,3 +135,46 @@ const stats = [
   }
 ]
 </script>
+<style scoped>
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -30px) scale(1.05);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-40px, -40px) scale(1.1);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-float {
+  animation: float 20s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 25s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 15s ease-in-out infinite;
+}
+</style>

@@ -1,6 +1,16 @@
 <template>
-  <section id="donasi" class="py-16 md:py-20 bg-gradient-to-br from-masjid-cream to-masjid-gold-light/30">
-    <div class="container mx-auto px-4 lg:px-8">
+  <section id="donasi" class="relative py-16 md:py-20 overflow-hidden">
+    <!-- Premium Background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-masjid-cream via-masjid-gold-light/20 to-white"></div>
+    
+    <!-- Animated Decorative Elements -->
+    <div class="absolute top-1/4 -right-40 w-96 h-96 bg-gradient-to-br from-masjid-gold/10 to-transparent rounded-full blur-3xl animate-pulse-slow"></div>
+    <div class="absolute -bottom-32 -left-40 w-80 h-80 bg-gradient-to-br from-amber-500/8 to-transparent rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+    
+    <!-- Heart Pattern Overlay -->
+    <div class="absolute inset-0 opacity-[0.02]" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M30 20c5-5 15-3 15 5 0 8-15 15-15 15S15 33 15 25c0-8 10-10 15-5z\' fill=\'%23C6A87C\' fill-opacity=\'1\'/%3E%3C/svg%3E'); background-size: 120px 120px;"></div>
+    
+    <div class="container mx-auto px-4 lg:px-8 relative z-10">
       <!-- Section Header -->
       <div class="text-center mb-12">
         <div class="inline-flex items-center gap-2 px-4 py-2 bg-masjid-gold-light rounded-full mb-4">
@@ -65,7 +75,7 @@
           <div class="mb-6">
             <div class="bg-masjid-cream rounded-xl p-4 border-2 border-dashed border-masjid-gold/30">
               <div class="bg-white rounded-lg flex items-center justify-center overflow-hidden">
-                <img src="/images/qris-masjid.jpeg" alt="QRIS Masjid Al-Furqon" class="w-full h-full" loading="lazy" decoding="async" />
+                <img src="/images/qris-masjid.jpeg" alt="QRIS Masjid Jamie Al-Furqon" class="w-full h-full" loading="lazy" decoding="async" />
               </div>
             </div>
           </div>
@@ -246,3 +256,19 @@ onMounted(() => {
   loadDonationSettings()
 })
 </script>
+<style scoped>
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.15);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 16s ease-in-out infinite;
+}
+</style>

@@ -49,7 +49,7 @@ const { fetchSettingsObject } = useSettings()
 
 const show = ref(false)
 const whatsappNumber = ref('6281234567890') // Default number
-const message = 'Assalamualaikum, saya ingin bertanya tentang Masjid Al-Furqon'
+const message = 'Assalamualaikum, saya ingin bertanya tentang Masjid Jamie Al-Furqon'
 
 const whatsappLink = computed(() => {
   const encodedMessage = encodeURIComponent(message)

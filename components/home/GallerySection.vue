@@ -1,6 +1,16 @@
 <template>
-  <section id="galeri" class="py-20 md:py-28 bg-gradient-to-b from-gray-50/50 to-white">
-    <div class="container mx-auto px-6">
+  <section id="galeri" class="relative py-20 md:py-28 overflow-hidden">
+    <!-- Premium Background -->
+    <div class="absolute inset-0 bg-gradient-to-b from-gray-50/50 via-white to-gray-50/30"></div>
+    
+    <!-- Decorative Ambient Elements -->
+    <div class="absolute top-1/3 -left-40 w-96 h-96 bg-gradient-to-br from-pink-500/5 to-transparent rounded-full blur-3xl animate-pulse-slow"></div>
+    <div class="absolute bottom-1/4 -right-40 w-80 h-80 bg-gradient-to-br from-cyan-500/5 to-transparent rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2.5s;"></div>
+    
+    <!-- Camera Pattern Overlay -->
+    <div class="absolute inset-0 opacity-[0.015]" style="background-image: url('data:image/svg+xml,%3Csvg width=\'80\' height=\'80\' viewBox=\'0 0 80 80\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'1\'%3E%3Cpath d=\'M20 15h40v10H20zM15 30h50v35H15z\'/%3E%3Ccircle cx=\'40\' cy=\'47.5\' r=\'10\'/%3E%3C/g%3E%3C/svg%3E'); background-size: 100px 100px;"></div>
+    
+    <div class="container mx-auto px-6 relative z-10">
       <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto mb-16">
         <div class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-masjid-gold/20 rounded-full mb-5 shadow-sm">
@@ -11,7 +21,7 @@
           Galeri Kegiatan
         </h2>
         <p class="text-lg text-masjid-text-muted leading-relaxed">
-          Dokumentasi kegiatan dan momen berharga di Masjid Al-Furqon
+          Dokumentasi kegiatan dan momen berharga di Masjid Jamie Al-Furqon
         </p>
       </div>
 
@@ -96,53 +106,112 @@
       </div>
     </div>
 
-    <!-- Lightbox Modal -->
+    <!-- Lightbox Modal Premium -->
     <Transition
-      enter-active-class="transition-opacity duration-200"
+      enter-active-class="transition-opacity duration-300"
       enter-from-class="opacity-0"
       enter-to-class="opacity-100"
-      leave-active-class="transition-opacity duration-150"
+      leave-active-class="transition-opacity duration-200"
       leave-from-class="opacity-100"
       leave-to-class="opacity-0"
     >
       <div
         v-if="lightboxItem"
         @click="closeLightbox"
-        class="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-4 overflow-y-auto"
+        class="fixed inset-0 z-[9999] flex items-center justify-center p-4 overflow-hidden"
       >
-        <button
-          @click="closeLightbox"
-          class="fixed top-4 right-4 z-[10000] text-white text-3xl sm:text-4xl hover:text-masjid-gold transition-colors bg-black/50 w-12 h-12 rounded-full flex items-center justify-center"
-          aria-label="Close lightbox"
-        >
-          ✕
-        </button>
+        <!-- Glassmorphism Background with Gradients -->
+        <div class="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black">
+          <div class="absolute inset-0 backdrop-blur-3xl bg-black/40"></div>
+          <!-- Ambient Glows -->
+          <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-masjid-gold/10 rounded-full blur-3xl"></div>
+          <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+        </div>
 
-        <div @click.stop class="max-w-5xl w-full my-auto">
-          <!-- Image -->
-          <div class="mb-4 sm:mb-6">
-            <img
-              :src="lightboxItem.image_url"
-              :alt="lightboxItem.title"
-              class="w-full h-auto max-h-[70vh] sm:max-h-[80vh] object-contain rounded-lg mx-auto"
-              loading="eager"
-              decoding="async"
-            />
-          </div>
-
-          <!-- Info -->
-          <div class="text-center text-white px-2">
-            <div class="mb-2 sm:mb-3">
-              <span :class="getCategoryColor(lightboxItem.category)" class="px-3 py-1 rounded-full text-xs font-medium">
-                {{ getCategoryLabel(lightboxItem.category) }}
+        <div @click.stop class="relative max-w-6xl w-full h-full flex flex-col items-center justify-center">
+          <!-- Top Bar: Close Button + Counter -->
+          <div class="absolute top-4 left-0 right-0 z-10 flex items-center justify-between px-4 sm:px-6">
+            <!-- Image Counter -->
+            <div class="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full">
+              <PhImage :size="18" class="text-masjid-gold" />
+              <span class="text-white font-semibold text-sm">
+                {{ currentImageIndex + 1 }} / {{ filteredGallery.length }}
               </span>
             </div>
-            <h3 class="text-xl sm:text-2xl font-serif font-bold mb-2">
-              {{ lightboxItem.title }}
-            </h3>
-            <p v-if="lightboxItem.description" class="text-sm sm:text-base text-white/80">
-              {{ lightboxItem.description }}
-            </p>
+
+            <!-- Close Button -->
+            <button
+              @click="closeLightbox"
+              class="group w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-red-500/80 backdrop-blur-md border border-white/20 hover:border-red-500 rounded-full transition-all duration-300"
+              aria-label="Close lightbox"
+            >
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Main Content -->
+          <div class="flex items-center justify-center gap-4 w-full max-h-[80vh]">
+            <!-- Previous Button -->
+            <button
+              v-if="currentImageIndex > 0"
+              @click="navigateImage(-1)"
+              class="group flex-shrink-0 w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-masjid-gold/80 backdrop-blur-md border border-white/20 hover:border-masjid-gold rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-masjid-gold/30"
+              aria-label="Previous image"
+            >
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            <!-- Image Container -->
+            <div class="flex-1 max-w-4xl">
+              <img
+                :src="lightboxItem.image_url"
+                :alt="lightboxItem.title"
+                class="w-full h-auto max-h-[60vh] sm:max-h-[70vh] object-contain rounded-2xl shadow-2xl"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+
+            <!-- Next Button -->
+            <button
+              v-if="currentImageIndex < filteredGallery.length - 1"
+              @click="navigateImage(1)"
+              class="group flex-shrink-0 w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-masjid-gold/80 backdrop-blur-md border border-white/20 hover:border-masjid-gold rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-masjid-gold/30"
+              aria-label="Next image"
+            >
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Info Card -->
+          <div class="absolute bottom-6 left-6 right-6 max-w-4xl mx-auto">
+            <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 sm:p-6 shadow-2xl">
+              <div class="flex items-start gap-4">
+                <div class="flex-1">
+                  <div class="flex items-center gap-3 mb-3">
+                    <span :class="getCategoryColor(lightboxItem.category)" class="px-3 py-1.5 rounded-lg text-xs font-bold shadow-md">
+                      {{ getCategoryLabel(lightboxItem.category).toUpperCase() }}
+                    </span>
+                    <div class="flex items-center gap-2 text-white/70 text-sm">
+                      <PhCalendar :size="16" />
+                      <span>{{ formatDate(lightboxItem.created_at) }}</span>
+                    </div>
+                  </div>
+                  <h3 class="text-xl sm:text-2xl font-serif font-bold text-white mb-2">
+                    {{ lightboxItem.title }}
+                  </h3>
+                  <p v-if="lightboxItem.description" class="text-sm sm:text-base text-white/80 leading-relaxed">
+                    {{ lightboxItem.description }}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -151,7 +220,7 @@
 </template>
 
 <script setup lang="ts">
-import { PhImage } from '@phosphor-icons/vue'
+import { PhImage, PhCalendar } from '@phosphor-icons/vue'
 
 const { fetchGalleryItems } = useGallery()
 
@@ -178,6 +247,12 @@ const displayedGallery = computed(() => {
   return filteredGallery.value.slice(0, displayLimit.value)
 })
 
+// Current image index in filtered gallery
+const currentImageIndex = computed(() => {
+  if (!lightboxItem.value) return -1
+  return filteredGallery.value.findIndex(item => item.id === lightboxItem.value.id)
+})
+
 const getCategoryLabel = (category: string) => {
   const cat = categories.find(c => c.value === category)
   return cat?.label || category
@@ -193,6 +268,15 @@ const getCategoryColor = (category: string) => {
   return colors[category] || colors.lainnya
 }
 
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString)
+  return new Intl.DateTimeFormat('id-ID', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  }).format(date)
+}
+
 const showMore = () => {
   displayLimit.value += 8
 }
@@ -202,15 +286,29 @@ const openLightbox = (item: any) => {
   document.body.style.overflow = 'hidden'
 }
 
+// Navigate between images (prev/next)
+const navigateImage = (direction: number) => {
+  const newIndex = currentImageIndex.value + direction
+  if (newIndex >= 0 && newIndex < filteredGallery.value.length) {
+    lightboxItem.value = filteredGallery.value[newIndex]
+  }
+}
+
 const closeLightbox = () => {
   lightboxItem.value = null
   document.body.style.overflow = ''
 }
 
-// ESC key handler
-const handleEscape = (e: KeyboardEvent) => {
-  if (e.key === 'Escape' && lightboxItem.value) {
+// Keyboard handlers (ESC + Arrow keys)
+const handleKeydown = (e: KeyboardEvent) => {
+  if (!lightboxItem.value) return
+  
+  if (e.key === 'Escape') {
     closeLightbox()
+  } else if (e.key === 'ArrowLeft') {
+    navigateImage(-1)
+  } else if (e.key === 'ArrowRight') {
+    navigateImage(1)
   }
 }
 
@@ -228,12 +326,12 @@ const loadGallery = async () => {
 
 onMounted(() => {
   loadGallery()
-  window.addEventListener('keydown', handleEscape)
+  window.addEventListener('keydown', handleKeydown)
 })
 
 onBeforeUnmount(() => {
   document.body.style.overflow = ''
-  window.removeEventListener('keydown', handleEscape)
+  window.removeEventListener('keydown', handleKeydown)
 })
 
 // Watch route changes and close lightbox
@@ -260,5 +358,20 @@ watch(() => route.path, () => {
   line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.12);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 20s ease-in-out infinite;
 }
 </style>

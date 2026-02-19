@@ -1,11 +1,15 @@
 <template>
   <div class="max-w-4xl">
+    <!-- Back Button Premium -->
     <div class="mb-6">
       <NuxtLink
         to="/admin/gallery"
-        class="text-sm text-masjid-gold hover:text-masjid-dark transition-colors inline-flex items-center gap-1"
+        class="group inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/50 backdrop-blur-sm border border-masjid-gold/20 hover:bg-masjid-gold/10 hover:border-masjid-gold/40 transition-all duration-300"
       >
-        ← Kembali ke Galeri
+        <svg class="w-4 h-4 text-masjid-gold group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+        <span class="text-sm font-medium text-masjid-dark">Kembali ke Galeri</span>
       </NuxtLink>
     </div>
 
@@ -28,125 +32,92 @@
       </NuxtLink>
     </div>
 
-    <div v-else class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-      <h2 class="text-2xl font-serif font-bold text-masjid-dark mb-6">
-        Edit Foto: {{ item.title }}
-      </h2>
+    <!-- Premium Form Card -->
+    <div v-else class="relative overflow-hidden">
+      <!-- Background Gradient -->
+      <div class="absolute inset-0 bg-gradient-to-br from-masjid-gold/5 via-masjid-cream/5 to-white rounded-2xl"></div>
+      <div class="absolute -top-24 -right-24 w-48 h-48 bg-masjid-gold/10 rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-masjid-cream/10 rounded-full blur-3xl"></div>
 
-      <form @submit.prevent="handleSubmit" class="space-y-6">
-        <!-- Photo Display/Replace -->
-        <div>
-          <label class="block text-sm font-medium text-masjid-dark mb-2">
-            Foto
-          </label>
-          <div class="space-y-4">
-            <!-- Current/Preview Photo -->
-            <div class="relative rounded-lg overflow-hidden bg-gray-100 aspect-video">
-              <img
-                v-if="photoPreview || form.image_url"
-                :src="photoPreview || form.image_url || ''"
-                alt="Preview"
-                class="w-full h-full object-cover"
-              />
-              <div v-else class="w-full h-full flex items-center justify-center">
-                <PhImage :size="64" class="text-gray-300" />
-              </div>
-            </div>
-            
-            <!-- Upload Button -->
-            <div class="flex gap-3">
-              <input
-                ref="photoInput"
-                type="file"
-                accept="image/*"
-                @change="handlePhotoChange"
-                class="hidden"
-              />
-              <button
-                type="button"
-                @click="photoInput?.click()"
-                class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-masjid-dark rounded-lg transition-colors"
-              >
-                {{ form.image_url ? 'Ganti Foto' : 'Pilih Foto' }}
-              </button>
-              <button
-                v-if="photoPreview || form.image_url"
-                type="button"
-                @click="removePhoto"
-                class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-700 rounded-lg transition-colors"
-              >
-                Hapus Foto
-              </button>
-            </div>
-            <p class="text-xs text-masjid-text-muted">
-              Format: JPG, PNG. Maksimal 5MB. Rekomendasi: 1200x800px
-            </p>
+      <div class="relative bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl border border-white/60 p-8">
+        <!-- Header with Icon -->
+        <div class="flex items-center gap-4 mb-8 pb-6 border-b border-masjid-gold/20">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-masjid-gold to-masjid-dark flex items-center justify-center shadow-lg shadow-masjid-gold/20">
+            <PhImage :size="24" weight="duotone" class="text-white" />
+          </div>
+          <div>
+            <h2 class="text-2xl font-serif font-bold text-masjid-dark">
+              Edit Foto: {{ item.title }}
+            </h2>
+            <p class="text-sm text-gray-600 mt-1">Perbarui foto di galeri</p>
           </div>
         </div>
 
-        <!-- Title -->
-        <div>
-          <label class="block text-sm font-medium text-masjid-dark mb-2">
-            Judul Foto *
-          </label>
-          <input
-            v-model="form.title"
-            type="text"
-            required
-            placeholder="Contoh: Kajian Ramadhan 2026"
-            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-masjid-gold focus:border-transparent transition-all outline-none"
-          />
-        </div>
+        <form @submit.prevent="handleSubmit" class="space-y-6">
+          <!-- Photo Display/Replace Premium -->
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-masjid-dark">Foto <span class="text-red-500">*</span></label>
+            <div class="space-y-4">
+              <!-- Current/Preview Photo Premium -->
+              <div class="relative rounded-xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 aspect-video border-2 border-gray-200 shadow-md group hover:border-masjid-gold/50 transition-all duration-300">
+                <img v-if="photoPreview || form.image_url" :src="photoPreview || form.image_url || ''" alt="Preview" class="w-full h-full object-cover" />
+                <div v-else class="w-full h-full flex items-center justify-center">
+                  <PhImage :size="64" weight="duotone" class="text-gray-400" />
+                </div>
+                <!-- Success Badge on Preview -->
+                <div v-if="photoPreview" class="absolute top-4 right-4 px-3 py-1.5 bg-gradient-to-r from-green-500 to-emerald-600 text-white text-xs font-semibold rounded-full shadow-lg backdrop-blur-sm">
+                  ✓ Foto Baru
+                </div>
+              </div>
+              
+              <!-- Upload Buttons Premium -->
+              <div class="flex gap-3">
+                <input ref="photoInput" type="file" accept="image/*" @change="handlePhotoChange" class="hidden" />
+                <button type="button" @click="photoInput?.click()" class="px-5 py-2.5 bg-gradient-to-r from-masjid-gold/10 to-masjid-cream/10 hover:from-masjid-gold/20 hover:to-masjid-cream/20 text-masjid-dark font-semibold rounded-lg border-2 border-masjid-gold/30 transition-all duration-300 shadow-sm hover:shadow-md">
+                  {{ form.image_url ? 'Ganti Foto' : 'Pilih Foto' }}
+                </button>
+                <button v-if="photoPreview || form.image_url" type="button" @click="removePhoto" class="px-5 py-2.5 bg-gradient-to-r from-red-50 to-red-100 hover:from-red-100 hover:to-red-200 text-red-700 font-semibold rounded-lg border-2 border-red-200 hover:border-red-300 transition-all duration-300 shadow-sm">
+                  🗑️ Hapus Foto
+                </button>
+              </div>
+              <p class="text-xs text-gray-600">Format: JPG, PNG. Maksimal 5MB. Rekomendasi: 1200x800px</p>
+            </div>
+          </div>
 
-        <!-- Description -->
-        <div>
-          <label class="block text-sm font-medium text-masjid-dark mb-2">
-            Deskripsi <span class="text-xs text-masjid-text-muted">(Opsional)</span>
-          </label>
-          <textarea
-            v-model="form.description"
-            rows="3"
-            placeholder="Jelaskan tentang foto ini..."
-            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-masjid-gold focus:border-transparent transition-all outline-none resize-none"
-          ></textarea>
-        </div>
+          <!-- Title Premium -->
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-masjid-dark">Judul Foto <span class="text-red-500">*</span></label>
+            <input v-model="form.title" type="text" required placeholder="Contoh: Kajian Ramadhan 2026" class="w-full px-5 py-3.5 rounded-xl border-2 border-gray-200 bg-white/70 backdrop-blur-sm focus:bg-white focus:border-masjid-gold focus:ring-4 focus:ring-masjid-gold/10 transition-all duration-300 outline-none placeholder:text-gray-400 shadow-sm hover:border-masjid-gold/50" />
+          </div>
 
-        <!-- Category -->
-        <div>
-          <label class="block text-sm font-medium text-masjid-dark mb-2">
-            Kategori *
-          </label>
-          <select
-            v-model="form.category"
-            required
-            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-masjid-gold focus:border-transparent transition-all outline-none"
-          >
-            <option value="">-- Pilih Kategori --</option>
-            <option value="kegiatan">Kegiatan</option>
-            <option value="masjid">Masjid</option>
-            <option value="jamaah">Jamaah</option>
-            <option value="lainnya">Lainnya</option>
-          </select>
-        </div>
+          <!-- Description Premium -->
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-masjid-dark">Deskripsi <span class="text-xs text-gray-500 font-normal">(Opsional)</span></label>
+            <textarea v-model="form.description" rows="3" placeholder="Jelaskan tentang foto ini..." class="w-full px-5 py-3.5 rounded-xl border-2 border-gray-200 bg-white/70 backdrop-blur-sm focus:bg-white focus:border-masjid-gold focus:ring-4 focus:ring-masjid-gold/10 transition-all duration-300 outline-none resize-none placeholder:text-gray-400 shadow-sm hover:border-masjid-gold/50"></textarea>
+          </div>
 
-        <!-- Submit Buttons -->
-        <div class="flex gap-3 pt-4">
-          <button
-            type="submit"
-            :disabled="submitting"
-            class="flex-1 px-6 py-3 bg-masjid-gold hover:bg-masjid-dark text-white font-medium rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <span v-if="submitting">Menyimpan...</span>
-            <span v-else>Simpan Perubahan</span>
-          </button>
-          <NuxtLink
-            to="/admin/gallery"
-            class="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-masjid-dark font-medium rounded-lg transition-colors text-center"
-          >
-            Batal
-          </NuxtLink>
-        </div>
-      </form>
+          <!-- Category Premium -->
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-masjid-dark">Kategori <span class="text-red-500">*</span></label>
+            <select v-model="form.category" required class="w-full px-5 py-3.5 rounded-xl border-2 border-gray-200 bg-white/70 backdrop-blur-sm focus:bg-white focus:border-masjid-gold focus:ring-4 focus:ring-masjid-gold/10 transition-all duration-300 outline-none shadow-sm hover:border-masjid-gold/50 cursor-pointer appearance-none" style="background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%236B7280%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3e%3cpolyline points=%276 9 12 15 18 9%27%3e%3c/polyline%3e%3c/svg%3e'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.25rem; padding-right: 3rem;">
+              <option value="">-- Pilih Kategori --</option>
+              <option value="kegiatan">📸 Kegiatan</option>
+              <option value="masjid">🕌 Masjid</option>
+              <option value="jamaah">👥 Jamaah</option>
+              <option value="lainnya">✨ Lainnya</option>
+            </select>
+          </div>
+
+          <!-- Premium Action Buttons -->
+          <div class="flex flex-col-reverse sm:flex-row gap-4 pt-6 border-t border-masjid-gold/20">
+            <NuxtLink to="/admin/gallery" class="sm:w-40 px-6 py-3.5 bg-white border-2 border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-gray-700 font-semibold rounded-xl transition-all duration-300 text-center shadow-sm">Batal</NuxtLink>
+            <button type="submit" :disabled="submitting" class="flex-1 px-6 py-3.5 bg-gradient-to-r from-masjid-gold to-masjid-dark hover:from-masjid-dark hover:to-masjid-gold text-white font-semibold rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-masjid-gold/30 hover:shadow-xl hover:shadow-masjid-gold/40 hover:scale-[1.02] active:scale-[0.98]">
+              <span v-if="submitting" class="flex items-center justify-center gap-2"><svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Menyimpan...</span>
+              <span v-else>Simpan Perubahan</span>
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </template>

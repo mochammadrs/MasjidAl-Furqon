@@ -4,7 +4,7 @@
       <!-- Logo & Title -->
       <div class="text-center mb-8">
         <div class="inline-flex items-center justify-center w-16 h-16 bg-white rounded-lg shadow-lg mb-4 overflow-hidden">
-          <img src="/images/logo-masjid.png" alt="Logo Masjid Al-Furqon" class="w-full h-full object-cover" />
+          <img src="/images/logo-masjid.png" alt="Logo Masjid Jamie Al-Furqon" class="w-full h-full object-cover" />
         </div>
         <h1 class="text-3xl font-serif font-bold text-white mb-2">
           Reset Password

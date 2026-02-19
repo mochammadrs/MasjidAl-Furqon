@@ -1,6 +1,16 @@
 <template>
-  <section id="pengurus" class="py-20 md:py-28 bg-gradient-to-b from-white via-masjid-cream/30 to-white">
-    <div class="container mx-auto px-6">
+  <section id="pengurus" class="relative py-20 md:py-28 overflow-hidden">
+    <!-- Premium Background -->
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-masjid-cream/30 to-white"></div>
+    
+    <!-- Decorative Elements -->
+    <div class="absolute -top-32 left-1/3 w-80 h-80 bg-gradient-to-br from-indigo-500/5 to-transparent rounded-full blur-3xl animate-float-slow"></div>
+    <div class="absolute -bottom-32 right-1/4 w-96 h-96 bg-gradient-to-br from-purple-500/5 to-transparent rounded-full blur-3xl animate-float" style="animation-delay: 3s;"></div>
+    
+    <!-- Subtle Pattern -->
+    <div class="absolute inset-0 opacity-[0.015]" style="background-image: radial-gradient(circle, rgba(198, 168, 124, 0.1) 1px, transparent 1px); background-size: 30px 30px;"></div>
+    
+    <div class="container mx-auto px-6 relative z-10">
       <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto mb-16">
         <div class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-masjid-gold/20 rounded-full mb-5 shadow-sm">
@@ -11,7 +21,7 @@
           Pengurus Masjid
         </h2>
         <p class="text-lg text-masjid-text-muted leading-relaxed">
-          Kenali para pengurus yang mengabdi untuk kemakmuran Masjid Al-Furqon
+          Kenali para pengurus yang mengabdi untuk kemakmuran Masjid Jamie Al-Furqon
         </p>
       </div>
 
@@ -118,6 +128,33 @@ onMounted(() => {
 })
 </script>
 
+<style scoped>
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(25px, -25px) scale(1.05);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-35px, 30px) scale(1.08);
+  }
+}
+
+.animate-float {
+  animation: float 22s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 28s ease-in-out infinite;
+}
+</style>
 <style scoped>
 .line-clamp-3 {
   display: -webkit-box;

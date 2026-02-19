@@ -34,7 +34,7 @@ const sharePrayerTimes = async () => {
 
   const text = `Jadwal Sholat Tasikmalaya\n${dateStr}\n\n${props.prayerTimes
     .map(p => `${p.name}: ${p.time}`)
-    .join('\n')}\n\nMasjid Al-Furqon\nMembangun Umat Berakhlak Mulia`
+    .join('\n')}\n\nMasjid Jamie Al-Furqon\nMembangun Umat Berakhlak Mulia`
 
   // Check if native share is supported
   if (navigator.share) {

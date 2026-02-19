@@ -148,11 +148,11 @@ const currentDate = computed(() => {
 })
 
 const shareSchedule = () => {
-  const text = `Jadwal Sholat Hari Ini - Masjid Al-Furqon Tasikmalaya\n\n${prayerTimes.value.map(p => `${p.name}: ${p.time}`).join('\n')}\n\nSholat berikutnya: ${nextPrayer.value}`
+  const text = `Jadwal Sholat Hari Ini - Masjid Jamie Al-Furqon Tasikmalaya\n\n${prayerTimes.value.map(p => `${p.name}: ${p.time}`).join('\n')}\n\nSholat berikutnya: ${nextPrayer.value}`
   
   if (navigator.share) {
     navigator.share({
-      title: 'Jadwal Sholat - Masjid Al-Furqon',
+      title: 'Jadwal Sholat - Masjid Jamie Al-Furqon',
       text: text
     }).catch(() => {
       // Fallback to clipboard
